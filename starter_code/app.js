@@ -39,8 +39,13 @@ app.get('/beers', (req, res, next) => {
     })
     .catch(error => console.log(error));
 });
-// app.get('/random-beer', (req, res, next) => {
-//   res.render('index', { title: 'Random Beer' });
-// });
+app.get('/random-beer', (req, res, next) => {
+  punkAPI
+    .getRandom()
+    .then(beer => {
+      res.render('randomBeer', { title: 'Random Beer', beer });
+    })
+    .catch(error => console.log(error));
+});
 
 app.listen(3000, () => console.log(`Server running`));
